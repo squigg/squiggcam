@@ -1,9 +1,18 @@
 import {NgModule} from '@angular/core';
-import {MdButtonModule, MdCheckboxModule} from '@angular/material';
+import {
+    MdButtonModule, MdCardModule, MdCheckboxModule, MdDialogModule, MdListModule, MdProgressSpinnerModule, MdSnackBarModule,
+    MdToolbarModule
+} from '@angular/material';
 
 const moduleList = [
     MdButtonModule,
     MdCheckboxModule,
+    MdDialogModule,
+    MdProgressSpinnerModule,
+    MdToolbarModule,
+    MdListModule,
+    MdCardModule,
+    MdSnackBarModule,
 ];
 
 @NgModule({
