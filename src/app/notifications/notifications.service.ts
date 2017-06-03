@@ -14,7 +14,7 @@ export class NotificationsService {
         return this.http.get(AppSettings.API_ENDPOINT + 'notifications').map((res) => {
             console.log(res);
             return res.json() as NotificationStatus;
-        }).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+        });
     }
 
 }

@@ -1,11 +1,22 @@
-import {Request, Response} from '@angular/http';
-
-import {IHttpInterceptor} from 'angular2-http-interceptor';
+import {Response} from '@angular/http';
+import {Injectable} from '@angular/core';
 import {SpinnerService} from '../spinner/spinner.service';
 import {Observable} from 'rxjs/Observable';
 import {NotifierService} from '../notifier/notifier.service';
+import {HttpInterceptorService} from 'ng-http-interceptor';
 
-export class CustomHttpInterceptor implements IHttpInterceptor {
+@Injectable()
+export class CustomHttpInterceptorService {
+
+    constructor(private httpInterceptor: HttpInterceptorService,
+                private spinnerService: SpinnerService,
+                private notifierService: NotifierService) {
+    }
+
+    setup() {
+        this.httpInterceptor.request().addInterceptor(this.before.bind(this));
+        this.httpInterceptor.response().addInterceptor(this.after.bind(this));
+    }
 
     handleError(error: Response | any) {
         console.log('Interceptor: error', error);
@@ -30,24 +41,17 @@ export class CustomHttpInterceptor implements IHttpInterceptor {
         }
     }
 
-    constructor(private spinnerService: SpinnerService, private notifierService: NotifierService) {
-        console.log('I was made');
-    }
-
-    before(request: Request): Request {
+    before(data: any, method: string): any {
         console.log('Interceptor: before');
         this.spinnerService.show();
-        return request;
+        return data;
     }
 
-    after(res: Observable<Response>): Observable<any> {
+    after(res: Observable<Response>): Observable<Response> {
         console.log('Interceptor: after');
         this.spinnerService.hide();
         res.catch(this.handleError);
         res.map(this.showSuccessMessage);
-        res.map((resp: Response) => {
-            console.log(resp.json());
-        });
         return res;
     }
 }

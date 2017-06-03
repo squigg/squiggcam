@@ -5,11 +5,8 @@ import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
-import {HttpInterceptor, HttpInterceptorModule} from 'angular2-http-interceptor';
-import {SpinnerService} from './shared/spinner/spinner.service';
-import {CustomHttpInterceptor} from './shared/interceptor/interceptor.class';
 import {AppComponentsModule} from './app-components.module';
-import {NotifierService} from 'app/shared/notifier/notifier.service';
+import {CustomHttpInterceptorModule} from './shared/interceptor/interceptor.module';
 
 @NgModule({
     declarations: [
@@ -21,12 +18,7 @@ import {NotifierService} from 'app/shared/notifier/notifier.service';
         HttpModule,
         BrowserAnimationsModule,
         AppComponentsModule,
-        HttpInterceptorModule.withInterceptors([{
-            deps: [SpinnerService, NotifierService],
-            provide: HttpInterceptor,
-            useClass: CustomHttpInterceptor,
-            multi: true
-        }])
+        CustomHttpInterceptorModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
