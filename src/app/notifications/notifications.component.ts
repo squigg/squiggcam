@@ -12,7 +12,6 @@ export class NotificationsComponent implements OnInit {
     private status: NotificationStatus;
 
     constructor(private notificationService: NotificationsService) {
-        this.status = new NotificationStatus('error', 1, 'moo');
     }
 
     ngOnInit() {

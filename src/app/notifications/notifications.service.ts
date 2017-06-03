@@ -12,7 +12,6 @@ export class NotificationsService {
 
     getNotificationStatus(): Observable<NotificationStatus> {
         return this.http.get(AppSettings.API_ENDPOINT + 'notifications').map((res) => {
-            console.log(res);
             return res.json() as NotificationStatus;
         });
     }

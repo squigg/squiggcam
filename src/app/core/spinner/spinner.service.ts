@@ -11,12 +11,10 @@ export class SpinnerService {
     }
 
     show(): void {
-        console.log('showing spinner');
         this.openDialog();
     }
 
     hide(): void {
-        console.log('hiding spinner');
         this.closeDialog();
     }
 

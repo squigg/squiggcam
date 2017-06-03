@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@types/lodash": "^4.14.65",
     "core-js": "^2.4.1",
     "lodash": "^4.17.4",
     "ng-http-interceptor": "^3.1.0",

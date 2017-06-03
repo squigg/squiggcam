@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomHttpInterceptorService} from './shared/interceptor/interceptor.service';
 
 @Component({
     selector: 'app-root',
@@ -8,11 +7,11 @@ import {CustomHttpInterceptorService} from './shared/interceptor/interceptor.ser
 })
 export class AppComponent implements OnInit {
 
-    constructor(httpInterceptor: CustomHttpInterceptorService) {
-        httpInterceptor.setup();
+    ngOnInit(): void {
     }
 
-    ngOnInit(): void {
+    doSomething(): void {
+        console.log('Yay');
     }
 
 }

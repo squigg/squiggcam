@@ -34,24 +34,20 @@ export class CustomHttpInterceptorService {
     }
 
     showSuccessMessage(data: any) {
-        console.log('Interceptor: success', data);
+        data = data.json();
         if (data.message) {
-            console.log('Interceptor: success', data.message);
             this.notifierService.success(data.message);
         }
     }
 
     before(data: any, method: string): any {
-        console.log('Interceptor: before');
         this.spinnerService.show();
         return data;
     }
 
     after(res: Observable<Response>): Observable<Response> {
-        console.log('Interceptor: after');
         this.spinnerService.hide();
-        res.catch(this.handleError);
-        res.map(this.showSuccessMessage);
-        return res;
+        return res.catch(this.handleError.bind(this))
+            .do(this.showSuccessMessage.bind(this));
     }
 }

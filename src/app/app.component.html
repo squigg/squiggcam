@@ -9,5 +9,5 @@
 <app-notifications></app-notifications>
 <md-card>
   <md-card-title>Phone Actions</md-card-title>
-  <button md-raised-button [color]="'warn'">Reboot Phone</button>
+  <app-button (onClick)="doSomething()" [confirm]="true" [confirmOptions]="{title: 'Moo', message: 'Yay Me'}" md-raised-button [color]="'warn'">Reboot Phone</app-button>
 </md-card>

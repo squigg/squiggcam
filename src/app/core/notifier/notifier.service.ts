@@ -7,6 +7,8 @@ enum MessageType {
     Info
 }
 
+const typeClasses = ['mat-warn', 'mat-success', 'mat-accent'];
+
 @Injectable()
 export class NotifierService {
 
@@ -30,7 +32,8 @@ export class NotifierService {
     showNotification(type: MessageType, message: string) {
 
         const config: MdSnackBarConfig = {};
-        config.extraClasses = [];
+        config.extraClasses = ['snackbar', typeClasses[type]];
+        config.duration = 3000;
 
         this.snackBarRef = this.snackBar.open(message, null, config);
 

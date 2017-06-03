@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {SharedModule} from '../shared.module';
+import {SharedModule} from '../../shared/shared.module';
 import {CustomHttpInterceptorService} from './interceptor.service';
 import {HttpInterceptorModule} from 'ng-http-interceptor';
 

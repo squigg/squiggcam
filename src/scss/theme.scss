@@ -1,0 +1,7 @@
+@import '~@angular/material/theming';
+
+$success: map-get($mat-green, 500);
+
+.snackbar.mat-success {
+  background-color: $success;
+}
