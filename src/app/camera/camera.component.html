@@ -1,0 +1,5 @@
+<md-card>
+  <md-card-title>Camera Feed</md-card-title>
+  <a [href]="videoUrl" target="_blank"><button md-raised-button [color]="'primary'">View LiveStream</button></a>
+  <app-button (click)="turnOffStreaming()" [confirm]="true" md-raised-button [color]="'warn'">Turn Off Streaming</app-button>
+</md-card>

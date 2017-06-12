@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  base_api_url: 'http://127.0.0.1'
+  base_api_url: 'http://127.0.0.1:8000',
+  base_phone_url: 'https://192.168.1.122:17067'
 };

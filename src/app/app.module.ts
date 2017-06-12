@@ -7,10 +7,14 @@ import {AppComponent} from './app.component';
 import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core/core.module';
 import {NotificationsModule} from './notifications/notifications.module';
+import {PhoneComponent} from './phone/phone.component';
+import {CameraComponent} from './camera/camera.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        PhoneComponent,
+        CameraComponent,
     ],
     imports: [
         BrowserModule,

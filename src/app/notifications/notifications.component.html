@@ -1,6 +1,7 @@
 <md-card>
   <md-card-title>Notifications</md-card-title>
-  <button md-raised-button [color]="'primary'">Enable Notifications</button>
-  <button md-raised-button [color]="'accent'">Pause Notifications</button>
-  <button md-raised-button [color]="'warn'">Disable Notifications</button>
+  <p>Notifications are {{ statusString }}</p>
+  <button *ngIf="!status?.enabled" md-raised-button [color]="'primary'">Enable Notifications</button>
+  <button *ngIf="status?.enabled && !status?.paused" md-raised-button [color]="'accent'">Pause Notifications</button>
+  <button *ngIf="status?.enabled" md-raised-button [color]="'warn'">Disable Notifications</button>
 </md-card>

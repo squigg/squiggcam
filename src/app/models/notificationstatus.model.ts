@@ -1,4 +1,6 @@
 export class NotificationStatus {
-    constructor(private status: string, private duration: number, private message: string) {
+
+    constructor(public enabled: boolean, public paused: boolean, public paused_duration: number, public unpause_at: string) {
     }
+
 }

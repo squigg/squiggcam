@@ -10,12 +10,23 @@ import {NotificationStatus} from '../models/notificationstatus.model';
 export class NotificationsComponent implements OnInit {
 
     private status: NotificationStatus;
+    private statusString = 'Unknown';
 
     constructor(private notificationService: NotificationsService) {
     }
 
     ngOnInit() {
-        this.notificationService.getNotificationStatus().subscribe((status) => this.status = status);
+        this.notificationService.getNotificationStatus().subscribe((status) => this.updateStatus(status));
     }
 
+    private updateStatus(status: NotificationStatus) {
+        this.status = status;
+        if (status.enabled) {
+            this.statusString = 'Enabled';
+        } else if (status.paused) {
+            this.statusString = 'Paused';
+        } else {
+            this.statusString = 'Disabled';
+        }
+    }
 }
