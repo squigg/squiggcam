@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng ser",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -22,9 +22,11 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "@material/layout-grid": "^0.2.0",
     "@types/lodash": "^4.14.65",
     "core-js": "^2.4.1",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "ng-http-interceptor": "^3.1.0",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"

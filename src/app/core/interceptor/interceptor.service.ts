@@ -3,7 +3,8 @@ import {Injectable} from '@angular/core';
 import {SpinnerService} from '../spinner/spinner.service';
 import {Observable} from 'rxjs/Observable';
 import {NotifierService} from '../notifier/notifier.service';
-import {HttpInterceptorService} from 'ng-http-interceptor';
+import {getHttpHeadersOrInit, HttpInterceptorService} from 'ng-http-interceptor';
+import {AppSettings} from '../../config/appsettings.class';
 
 @Injectable()
 export class CustomHttpInterceptorService {

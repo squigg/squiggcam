@@ -20,6 +20,7 @@
       "prefix": "app",
       "styles": [
         "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+        "../node_modules/@material/layout-grid/mdc-layout-grid.scss",
         "styles.scss"
       ],
       "scripts": [],
@@ -54,6 +55,10 @@
   "defaults": {
     "styleExt": "scss",
     "component": {
+    },
+    "serve": {
+      "port": 4200,
+      "host": "dev.squiggcam"
     }
   }
 }

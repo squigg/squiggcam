@@ -1,7 +1,16 @@
 <md-card>
   <md-card-title>Notifications</md-card-title>
   <p>Notifications are {{ statusString }}</p>
-  <button *ngIf="!status?.enabled" md-raised-button [color]="'primary'">Enable Notifications</button>
-  <button *ngIf="status?.enabled && !status?.paused" md-raised-button [color]="'accent'">Pause Notifications</button>
-  <button *ngIf="status?.enabled" md-raised-button [color]="'warn'">Disable Notifications</button>
+  <button (click)="enable()" *ngIf="!status?.enabled" md-raised-button [color]="'primary'">Enable Notifications</button>
+  <app-button (click)="togglePauseOptions()" *ngIf="status?.enabled && !status?.paused" md-raised-button [color]="'accent'">Pause Notifications</app-button>
+  <div class="margin-top margin-bottom" *ngIf="showPauseOptions">
+    <button (click)="pause(60)" md-raised-button [color]="'accent'">1 Hour</button>
+    <button (click)="pause(120)" md-raised-button [color]="'accent'">2 Hours</button>
+    <button (click)="pause(60*24)" md-raised-button [color]="'accent'">1 Day</button>
+    <app-button (onClick)="pause($event)" [singleInput]="true" [singleInputOptions]="pauseOptions" md-raised-button [color]="'accent'">Custom</app-button>
+  </div>
+  <app-button (click)="disable()" [confirm]="true" *ngIf="status?.enabled" md-raised-button [color]="'warn'">Disable Notifications</app-button>
 </md-card>
+<pre>
+  {{ status | json }}
+</pre>
