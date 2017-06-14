@@ -5,3 +5,7 @@ $success: map-get($mat-green, 500);
 .snackbar.mat-success {
   background-color: $success;
 }
+
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
