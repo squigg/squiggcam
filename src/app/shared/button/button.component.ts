@@ -17,7 +17,6 @@ const defaultSingleInputOptions: SingleInputOptions = {
     cancelButton: 'Cancel',
     okButton: 'OK',
     title: 'Input Required',
-    message: 'Enter Input Value',
 };
 
 @Component({

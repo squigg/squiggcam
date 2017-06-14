@@ -21,7 +21,6 @@ export class NotificationsComponent implements OnInit {
     constructor(private notificationService: NotificationsService, private notifier: NotifierService) {
         this.pauseOptions = {
             title: 'Pause Duration',
-            message: 'Enter pause duration (minutes):',
             inputLabel: 'Duration (minutes)',
             inputValue: '60',
             okButton: 'Pause'

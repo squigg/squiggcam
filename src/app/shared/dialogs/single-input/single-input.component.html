@@ -1,6 +1,6 @@
 <h1 md-dialog-title>{{ data.title }}</h1>
 <md-dialog-content>
-  <p>{{ data.message }}</p>
+  <p *ngIf="data.message">{{ data.message }}</p>
   <md-input-container>
     <input mdInput [placeholder]="data.inputLabel" [(ngModel)]="input">
   </md-input-container>
