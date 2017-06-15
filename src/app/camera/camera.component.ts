@@ -14,7 +14,7 @@ export class CameraComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.videoUrl = AppSettings.VIDEO_URL;
+        this.videoUrl = AppSettings.LIVE_VIDEO_URL;
     }
 
     turnOffStreaming(): void {

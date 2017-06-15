@@ -1,6 +1,17 @@
 <md-card>
-  <md-card-title>Notifications</md-card-title>
-  <p>Notifications are {{ statusString }}</p>
+  <md-card-title>Motion Events</md-card-title>
+  <p [hidden]="unreadCount==0">{{ unreadCount }} new motion event notifications!</p>
+  <button *ngIf="!showNotifications" (click)="viewNotifications(unreadCount!=0)" md-raised-button [color]="'primary'">View {{ unreadCount != 0 ? 'New' : 'Previous' }} Events</button>
+  <button *ngIf="showNotifications" (click)="hideNotifications()" md-raised-button [color]="'primary'">Hide Events</button>
+  <button *ngIf="unreadCount!=0" (click)="markAllAsRead()" md-raised-button [color]="'accent'">Dismiss All</button>
+  <div *ngIf="showNotifications">
+    <md-list>
+      <md-list-item *ngFor="let notification of notifications ">
+        <a [href]="notification.url">{{ notification.filename }}</a><button class="margin-left" *ngIf="!notification.read_at" (click)="markAsRead(notification.id)" md-button>Dismiss</button>
+      </md-list-item>
+    </md-list>
+  </div>
+  <p>Notifications are currently {{ statusString }}</p>
   <button (click)="enable()" *ngIf="!status?.enabled" md-raised-button [color]="'primary'">Enable Notifications</button>
   <app-button (click)="togglePauseOptions()" *ngIf="status?.enabled && !status?.paused" md-raised-button [color]="'accent'">Pause Notifications</app-button>
   <div class="margin-top margin-bottom" *ngIf="showPauseOptions">
@@ -11,6 +22,3 @@
   </div>
   <app-button (click)="disable()" [confirm]="true" *ngIf="status?.enabled" md-raised-button [color]="'warn'">Disable Notifications</app-button>
 </md-card>
-<pre>
-  {{ status | json }}
-</pre>

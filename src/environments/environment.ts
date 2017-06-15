@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  base_api_url: 'http://dev.squiggcam:17067',
+  base_api_url: 'http://dev.squiggcam:17067/squiggcam',
   base_phone_url: 'https://192.168.1.122:17067'
 };

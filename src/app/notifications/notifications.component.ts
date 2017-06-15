@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {NotificationsService} from './notifications.service';
 import {NotificationStatus} from '../models/notificationstatus.model';
+import {MotionEvent} from '../models/motionevent.model';
 import {SingleInputOptions} from '../shared/dialogs/single-input/single-input-options.interface';
 import {NotifierService} from '../core/notifier/notifier.service';
+import {AppSettings} from '../config/appsettings.class';
 import * as moment from 'moment';
 
 @Component({
@@ -17,6 +19,9 @@ export class NotificationsComponent implements OnInit {
     private showPauseOptions = false;
 
     private pauseOptions: SingleInputOptions;
+    private notifications: MotionEvent[];
+    private unreadCount = 0;
+    private showNotifications = false;
 
     constructor(private notificationService: NotificationsService, private notifier: NotifierService) {
         this.pauseOptions = {
@@ -39,12 +44,32 @@ export class NotificationsComponent implements OnInit {
         this.showPauseOptions = false;
     }
 
+    private updateNotifications(notifications: MotionEvent[]) {
+        this.notifications = notifications.map((notification) => {
+            notification.url = AppSettings.MOTION_VIDEO_URL + '/' + notification.filename;
+            return notification;
+        });
+        this.unreadCount = this.notifications.reduce((count, notification) => {
+            return count + (notification.read_at ? 0 : 1);
+        }, 0);
+    }
+
     togglePauseOptions(): void {
         this.showPauseOptions = !this.showPauseOptions;
     }
 
     ngOnInit() {
         this.notificationService.getNotificationStatus().subscribe((status) => this.updateStatus(status));
+        this.notificationService.getNotificationsUnreadCount().subscribe((count) => this.unreadCount = count);
+    }
+
+    viewNotifications(unread = false): void {
+        this.notificationService.getNotifications(unread).subscribe((notifications) => this.updateNotifications(notifications));
+        this.showNotifications = true;
+    }
+
+    hideNotifications(): void {
+        this.showNotifications = false;
     }
 
     pause(duration): void {
@@ -64,4 +89,16 @@ export class NotificationsComponent implements OnInit {
         this.notificationService.disableNotifications().subscribe((status) => this.updateStatus(status));
     }
 
+    markAllAsRead(): void {
+        this.notificationService.markAllNotificationsAsRead().subscribe((notifications) => this.updateNotifications(notifications));
+    }
+
+    markAsRead(id): void {
+        this.notificationService.markNotificationAsRead(id).subscribe((notifications) => {
+            this.updateNotifications(notifications);
+            if (this.unreadCount === 0) {
+                this.showNotifications = false;
+            }
+        });
+    }
 }
