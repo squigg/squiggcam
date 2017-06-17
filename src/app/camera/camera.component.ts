@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AppSettings} from '../config/appsettings.class';
+import {NotifierService} from '../core/notifier/notifier.service';
 
 @Component({
     selector: 'app-camera',
@@ -10,15 +11,16 @@ export class CameraComponent implements OnInit {
 
     private videoUrl: string;
 
-    constructor() {
+    constructor(private notifier: NotifierService) {
     }
 
     ngOnInit() {
         this.videoUrl = AppSettings.LIVE_VIDEO_URL;
+        this.configUrl = AppSettings.PHONE_CONFIG_URL;
     }
 
     turnOffStreaming(): void {
-
+        this.notifier.error('Not yet implemented');
     }
 
 }
