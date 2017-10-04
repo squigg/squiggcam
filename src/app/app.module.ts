@@ -8,14 +8,13 @@ import {SharedModule} from './shared/shared.module';
 import {CoreModule} from './core/core.module';
 import {NotificationsModule} from './notifications/notifications.module';
 import {PhoneComponent} from './phone/phone.component';
-import {CameraComponent} from './camera/camera.component';
 import {MediaplayerModule} from './mediaplayer/mediaplayer.module';
+import {CameraModule} from './camera/camera.module';
 
 @NgModule({
     declarations: [
         AppComponent,
         PhoneComponent,
-        CameraComponent,
     ],
     imports: [
         BrowserModule,
@@ -24,6 +23,7 @@ import {MediaplayerModule} from './mediaplayer/mediaplayer.module';
         SharedModule,
         CoreModule,
         NotificationsModule,
+        CameraModule,
         MediaplayerModule,
     ],
     providers: [],

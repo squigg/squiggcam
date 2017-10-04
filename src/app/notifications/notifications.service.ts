@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
 import {NotificationStatus} from '../models/notificationstatus.model';
 import {MotionEvent} from '../models/motionevent.model';
 import {Http} from '@angular/http';
@@ -21,7 +22,7 @@ export class NotificationsService {
     sendNotificationRequest(url: string, method: string): Observable<MotionEvent[]> {
         const options = {method: method};
         return this.http.request(url, options).map((res) => {
-            return res.json().map((data) => {
+            return res.json().data.map((data) => {
                 return new MotionEvent(data.id, data.data.timestamp, data.data.filename, data.read_at);
             });
         });

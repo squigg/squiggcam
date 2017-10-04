@@ -49,9 +49,10 @@ export class NotificationsComponent implements OnInit {
             notification.url = AppSettings.MOTION_VIDEO_URL + '/' + notification.filename;
             return notification;
         });
-        this.unreadCount = this.notifications.reduce((count, notification) => {
-            return count + (notification.read_at ? 0 : 1);
-        }, 0);
+        this.refreshReadCount();
+        // this.unreadCount = this.notifications.reduce((count, notification) => {
+        //     return count + (notification.read_at ? 0 : 1);
+        // }, 0);
     }
 
     togglePauseOptions(): void {
@@ -60,6 +61,10 @@ export class NotificationsComponent implements OnInit {
 
     ngOnInit() {
         this.notificationService.getNotificationStatus().subscribe((status) => this.updateStatus(status));
+        this.refreshReadCount();
+    }
+
+    refreshReadCount() {
         this.notificationService.getNotificationsUnreadCount().subscribe((count) => this.unreadCount = count);
     }
 

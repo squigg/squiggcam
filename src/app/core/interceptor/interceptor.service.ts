@@ -2,6 +2,8 @@ import {Response} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {SpinnerService} from '../spinner/spinner.service';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
 import {NotifierService} from '../notifier/notifier.service';
 import {getHttpHeadersOrInit, HttpInterceptorService} from 'ng-http-interceptor';
 import {AppSettings} from '../../config/appsettings.class';
