@@ -1,19 +1,26 @@
 import {NgModule} from '@angular/core';
 import {
-    MdButtonModule, MdCardModule, MdCheckboxModule, MdDialogModule, MdInputModule, MdListModule, MdProgressSpinnerModule, MdSnackBarModule,
-    MdToolbarModule
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatInputModule,
+    MatListModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatToolbarModule
 } from '@angular/material';
 
 const moduleList = [
-    MdButtonModule,
-    MdCheckboxModule,
-    MdDialogModule,
-    MdProgressSpinnerModule,
-    MdToolbarModule,
-    MdListModule,
-    MdCardModule,
-    MdSnackBarModule,
-    MdInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatListModule,
+    MatCardModule,
+    MatSnackBarModule,
+    MatInputModule,
 ];
 
 @NgModule({

@@ -1,11 +1,11 @@
-<h1 md-dialog-title>{{ data.title }}</h1>
-<md-dialog-content>
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<mat-dialog-content>
   <p *ngIf="data.message">{{ data.message }}</p>
-  <md-input-container>
+  <mat-input-container>
     <input mdInput [placeholder]="data.inputLabel" [(ngModel)]="input">
-  </md-input-container>
-</md-dialog-content>
-<md-dialog-actions>
-  <button md-raised-button color="warn" md-dialog-close>{{ data.cancelButton }}</button>
-  <button md-raised-button color="primary" [md-dialog-close]="input" class="margin-left">{{ data.okButton }}</button>
-</md-dialog-actions>
+  </mat-input-container>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button color="warn" mat-dialog-close>{{ data.cancelButton }}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="input" class="margin-left">{{ data.okButton }}</button>
+</mat-dialog-actions>

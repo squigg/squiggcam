@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MD_DIALOG_DATA} from '@angular/material';
+import {MAT_DIALOG_DATA} from '@angular/material';
 import {ConfirmOptions} from './confirm-options.interface';
 
 @Component({
@@ -9,7 +9,7 @@ import {ConfirmOptions} from './confirm-options.interface';
 })
 export class ConfirmComponent implements OnInit {
 
-    constructor(@Inject(MD_DIALOG_DATA) private data: ConfirmOptions) {
+    constructor(@Inject(MAT_DIALOG_DATA) private data: ConfirmOptions) {
     }
 
     ngOnInit() {
