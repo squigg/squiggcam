@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpModule} from '@angular/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
@@ -10,6 +10,7 @@ import {NotificationsModule} from './notifications/notifications.module';
 import {PhoneComponent} from './phone/phone.component';
 import {MediaplayerModule} from './mediaplayer/mediaplayer.module';
 import {CameraModule} from './camera/camera.module';
+import {CustomHttpInterceptorService} from './core/interceptor/interceptor.service';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,7 @@ import {CameraModule} from './camera/camera.module';
     ],
     imports: [
         BrowserModule,
-        HttpModule,
+        HttpClientModule,
         BrowserAnimationsModule,
         SharedModule,
         CoreModule,
