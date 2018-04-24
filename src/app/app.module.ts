@@ -27,7 +27,9 @@ import {CustomHttpInterceptorService} from './core/interceptor/interceptor.servi
         CameraModule,
         MediaplayerModule,
     ],
-    providers: [],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptorService, multi: true },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
