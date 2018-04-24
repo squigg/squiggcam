@@ -1,24 +1,24 @@
-<md-card>
-  <md-card-title>Motion Events</md-card-title>
+<mat-card>
+  <mat-card-title>Motion Events</mat-card-title>
   <p [hidden]="unreadCount==0">{{ unreadCount }} new motion event notifications!</p>
-  <button *ngIf="!showNotifications" (click)="viewNotifications(unreadCount!=0)" md-raised-button [color]="'primary'">View {{ unreadCount != 0 ? 'New' : 'Previous' }} Events</button>
-  <button *ngIf="showNotifications" (click)="hideNotifications()" md-raised-button [color]="'primary'">Hide Events</button>
-  <button *ngIf="unreadCount!=0" (click)="markAllAsRead()" md-raised-button [color]="'accent'">Dismiss All</button>
+  <button *ngIf="!showNotifications" (click)="viewNotifications(unreadCount!=0)" mat-raised-button [color]="'primary'">View {{ unreadCount != 0 ? 'New' : 'Previous' }} Events</button>
+  <button *ngIf="showNotifications" (click)="hideNotifications()" mat-raised-button [color]="'primary'">Hide Events</button>
+  <button *ngIf="unreadCount!=0" (click)="markAllAsRead()" mat-raised-button [color]="'accent'">Dismiss All</button>
   <div *ngIf="showNotifications">
-    <md-list>
-      <md-list-item *ngFor="let notification of notifications ">
-        <a [href]="notification.url">{{ notification.filename }}</a><button class="margin-left" *ngIf="!notification.read_at" (click)="markAsRead(notification.id)" md-button>Dismiss</button>
-      </md-list-item>
-    </md-list>
+    <mat-list>
+      <mat-list-item *ngFor="let notification of notifications ">
+        <a [href]="notification.url">{{ notification.filename }}</a><button class="margin-left" *ngIf="!notification.read_at" (click)="markAsRead(notification.id)" mat-button>Dismiss</button>
+      </mat-list-item>
+    </mat-list>
   </div>
   <p>Notifications are currently {{ statusString }}</p>
-  <button (click)="enable()" *ngIf="!status?.enabled" md-raised-button [color]="'primary'">Enable Notifications</button>
-  <app-button (click)="togglePauseOptions()" *ngIf="status?.enabled && !status?.paused" md-raised-button [color]="'accent'">Pause Notifications</app-button>
+  <button (click)="enable()" *ngIf="!status?.enabled" mat-raised-button [color]="'primary'">Enable Notifications</button>
+  <app-button (click)="togglePauseOptions()" *ngIf="status?.enabled && !status?.paused" mat-raised-button [color]="'accent'">Pause Notifications</app-button>
   <div class="margin-top margin-bottom" *ngIf="showPauseOptions">
-    <button (click)="pause(60)" md-raised-button [color]="'accent'">1 Hour</button>
-    <button (click)="pause(120)" md-raised-button [color]="'accent'">2 Hours</button>
-    <button (click)="pause(60*24)" md-raised-button [color]="'accent'">1 Day</button>
-    <app-button (onClick)="pause($event)" [singleInput]="true" [singleInputOptions]="pauseOptions" md-raised-button [color]="'accent'">Custom</app-button>
+    <button (click)="pause(60)" mat-raised-button [color]="'accent'">1 Hour</button>
+    <button (click)="pause(120)" mat-raised-button [color]="'accent'">2 Hours</button>
+    <button (click)="pause(60*24)" mat-raised-button [color]="'accent'">1 Day</button>
+    <app-button (onClick)="pause($event)" [singleInput]="true" [singleInputOptions]="pauseOptions" mat-raised-button [color]="'accent'">Custom</app-button>
   </div>
-  <app-button (click)="disable()" [confirm]="true" *ngIf="status?.enabled" md-raised-button [color]="'warn'">Disable Notifications</app-button>
-</md-card>
+  <app-button (click)="disable()" [confirm]="true" *ngIf="status?.enabled" mat-raised-button [color]="'warn'">Disable Notifications</app-button>
+</mat-card>

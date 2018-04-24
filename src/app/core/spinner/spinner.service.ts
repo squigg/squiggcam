@@ -1,25 +1,31 @@
 import {Injectable} from '@angular/core';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import {SpinnerComponent} from './spinner.component';
 
 @Injectable()
 export class SpinnerService {
 
-    private dialogRef: MdDialogRef<SpinnerComponent>;
+    private dialogRef: MatDialogRef<SpinnerComponent, void>;
+    private open: boolean;
 
-    constructor(private mdDialog: MdDialog) {
+    constructor(private MatDialog: MatDialog) {
     }
 
     show(): void {
-        this.openDialog();
+        if (this.open) return;
+        this.open = true;
+        // Avoid issues with rendering from onInit
+        setTimeout(() => this.openDialog(), 1);
     }
 
     hide(): void {
-        this.closeDialog();
+        this.open = false;
+        // Ensure it is always opened and rendered first
+        setTimeout(() => this.closeDialog(), 1);
     }
 
     private openDialog(): void {
-        this.dialogRef = this.mdDialog.open(SpinnerComponent, {
+        this.dialogRef = this.MatDialog.open(SpinnerComponent, {
             height: '200px',
             width: '200px',
             disableClose: true,

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MdDialog, MdDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import {ConfirmComponent} from '../dialogs/confirm/confirm.component';
 import {ConfirmOptions} from '../dialogs/confirm/confirm-options.interface';
 import {SingleInputOptions} from '../dialogs/single-input/single-input-options.interface';
@@ -32,12 +32,12 @@ export class ButtonComponent implements OnInit {
     @Input() singleInput: boolean;
     @Input() singleInputOptions: SingleInputOptions;
 
-    @Output() onClick = new EventEmitter<null>();
+    @Output() onClick = new EventEmitter<string>();
 
-    private confirmDialogRef: MdDialogRef<ConfirmComponent>;
-    private singleInputDialogRef: MdDialogRef<SingleInputComponent>;
+    private confirmDialogRef: MatDialogRef<ConfirmComponent, string>;
+    private singleInputDialogRef: MatDialogRef<SingleInputComponent, string>;
 
-    constructor(private dialog: MdDialog) {
+    constructor(private dialog: MatDialog) {
     }
 
     ngOnInit() {

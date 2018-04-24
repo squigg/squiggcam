@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {MdSnackBar, MdSnackBarConfig, MdSnackBarRef, SimpleSnackBar} from '@angular/material';
+import {MatSnackBar, MatSnackBarConfig, MatSnackBarRef, SimpleSnackBar} from '@angular/material';
 
 enum MessageType {
     Error,
@@ -12,9 +12,9 @@ const typeClasses = ['mat-warn', 'mat-success', 'mat-accent'];
 @Injectable()
 export class NotifierService {
 
-    snackBarRef: MdSnackBarRef<SimpleSnackBar>;
+    snackBarRef: MatSnackBarRef<SimpleSnackBar>;
 
-    constructor(private snackBar: MdSnackBar) {
+    constructor(private snackBar: MatSnackBar) {
     }
 
     error(message: string) {
@@ -31,9 +31,10 @@ export class NotifierService {
 
     showNotification(type: MessageType, message: string) {
 
-        const config: MdSnackBarConfig = {};
-        config.extraClasses = ['snackbar', typeClasses[type]];
-        config.duration = 3000;
+        const config: MatSnackBarConfig = {
+            panelClass: ['snackbar', typeClasses[type]],
+            duration: 3000
+        };
 
         this.snackBarRef = this.snackBar.open(message, null, config);
 

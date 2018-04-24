@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MD_DIALOG_DATA, MdDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA} from '@angular/material';
 import {SingleInputOptions} from './single-input-options.interface';
 
 @Component({
@@ -11,7 +11,7 @@ export class SingleInputComponent implements OnInit {
 
     private input: string;
 
-    constructor(@Inject(MD_DIALOG_DATA) private data: SingleInputOptions) {
+    constructor(@Inject(MAT_DIALOG_DATA) private data: SingleInputOptions) {
     }
 
     ngOnInit() {

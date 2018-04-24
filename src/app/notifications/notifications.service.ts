@@ -3,35 +3,29 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {NotificationStatus} from '../models/notificationstatus.model';
 import {MotionEvent} from '../models/motionevent.model';
-import {Http} from '@angular/http';
+import {HttpClient} from '@angular/common/http';
 import {AppSettings} from '../config/appsettings.class';
 
 @Injectable()
 export class NotificationsService {
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
     }
 
     sendNotificationStatusRequest(url: string, method: string): Observable<NotificationStatus> {
-        const options = {method: method};
-        return this.http.request(url, options).map((res) => {
-            return res.json() as NotificationStatus;
-        });
+        return this.http.request<NotificationStatus>(method, url);
     }
 
     sendNotificationRequest(url: string, method: string): Observable<MotionEvent[]> {
-        const options = {method: method};
-        return this.http.request(url, options).map((res) => {
-            return res.json().data.map((data) => {
+        return this.http.request(method, url).map((res) => {
+            return res['data'].map((data) => {
                 return new MotionEvent(data.id, data.data.timestamp, data.data.filename, data.read_at);
             });
         });
     }
 
     getNotificationsUnreadCount(): Observable<number> {
-        return this.http.get(AppSettings.API_ENDPOINT + 'notification/unread').map((res) => {
-            return res.json();
-        });
+        return this.http.get<number>(AppSettings.API_ENDPOINT + 'notification/unread');
     }
 
     getNotifications(unread = false): Observable<MotionEvent[]> {

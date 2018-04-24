@@ -1,8 +1,8 @@
-<md-card>
-  <md-card-title>Camera Feed</md-card-title>
-  <a [href]="videoUrl" target="_blank"><button md-raised-button [color]="'primary'">View LiveStream</button></a>
-  <a [href]="configUrl" target="_blank"><button md-raised-button [color]="'primary'">View Video Config</button></a>
-  <app-button *ngIf="status?.curvals.motion_detect=='on'" (click)="setMotionDetection(false)" [confirm]="true" md-raised-button [color]="'warn'">Disable Motion Detection</app-button>
-  <app-button *ngIf="status?.curvals.motion_detect=='off'" (click)="setMotionDetection(true)" [confirm]="true" md-raised-button [color]="'accent'">Enable Motion Detection</app-button>
+<mat-card>
+  <mat-card-title>Camera Feed</mat-card-title>
+  <a [href]="videoUrl" target="_blank"><button mat-raised-button [color]="'primary'">View LiveStream</button></a>
+  <a [href]="configUrl" target="_blank"><button mat-raised-button [color]="'primary'">View Video Config</button></a>
+  <app-button *ngIf="status?.curvals.motion_detect=='on'" (click)="setMotionDetection(false)" [confirm]="true" mat-raised-button [color]="'warn'">Disable Motion Detection</app-button>
+  <app-button *ngIf="status?.curvals.motion_detect=='off'" (click)="setMotionDetection(true)" [confirm]="true" mat-raised-button [color]="'accent'">Enable Motion Detection</app-button>
   <p *ngIf="status?.curvals.motion_detect=='off'">Motion Detection is currently disabled</p>
-</md-card>
+</mat-card>

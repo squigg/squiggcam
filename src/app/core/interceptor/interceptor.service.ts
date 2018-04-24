@@ -1,56 +1,39 @@
-import {Response} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {SpinnerService} from '../spinner/spinner.service';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
+import {catchError, filter, finalize, tap} from 'rxjs/operators';
+import {_throw} from 'rxjs/observable/throw';
 import {NotifierService} from '../notifier/notifier.service';
-import {getHttpHeadersOrInit, HttpInterceptorService} from 'ng-http-interceptor';
-import {AppSettings} from '../../config/appsettings.class';
+import {HttpErrorResponse, HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 
 @Injectable()
-export class CustomHttpInterceptorService {
+export class CustomHttpInterceptorService implements HttpInterceptor {
 
-    constructor(private httpInterceptor: HttpInterceptorService,
-                private spinnerService: SpinnerService,
-                private notifierService: NotifierService) {
+    constructor(private spinnerService: SpinnerService, private notifierService: NotifierService) {
     }
 
-    setup() {
-        this.httpInterceptor.request().addInterceptor(this.before.bind(this));
-        this.httpInterceptor.response().addInterceptor(this.after.bind(this));
-    }
-
-    handleError(error: Response | any) {
-        console.log('Interceptor: error', error);
-        let message: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            message = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            message = error.message ? error.message : error.toString();
-        }
-
-        this.notifierService.error(message);
-        return Observable.throw(message);
-    }
-
-    showSuccessMessage(data: any) {
-        data = data.json();
-        if (data.message) {
-            this.notifierService.success(data.message);
+    showSuccessMessage(response: HttpResponse<any>) {
+        if (response.body.message) {
+            this.notifierService.success(response.body.message);
         }
     }
 
-    before(data: any, method: string): any {
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         this.spinnerService.show();
-        return data;
+        return next.handle(req).pipe(
+            filter((response) => response.type === HttpEventType.Response),
+            tap((response) => this.showSuccessMessage(response as HttpResponse<any>)),
+            finalize(() => this.spinnerService.hide()),
+            catchError((response) => this.handleError(response)),
+        );
     }
 
-    after(res: Observable<Response>): Observable<Response> {
-        this.spinnerService.hide();
-        return res.catch(this.handleError.bind(this))
-            .do(this.showSuccessMessage.bind(this));
+    handleError(response: HttpErrorResponse) {
+        if (!(response.error instanceof Error)) {
+            const err = response.error.error || JSON.stringify(response.error);
+            const message = `${response.status} - ${response.statusText || ''} ${err}`;
+            this.notifierService.error(message);
+        }
+        return _throw(response.error);
     }
 }
