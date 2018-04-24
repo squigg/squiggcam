@@ -1,28 +1,16 @@
 # Squiggcam
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.6.
+A small hobby project for turning an old Samsung Galaxy S4 into a home security camera.
 
-## Development server
+Built with TypeScript/Angular, this is the web front-end for controlling motion sensing, notifications, and for
+reviewing motion events/videos captured.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+It communicates via JSON API to the back-end which then proxies requests through the local network to the phone
+app.
 
-## Code scaffolding
+Code works and is used for my home video surveillance (watching cats), but I haven't written tests etc. for all
+the components... One for another day!
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+## TODO
+- Refresh notification status when it has been updated server-side when you come back to page 
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
